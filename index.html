@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD-AI 会议系列回顾 | 随机动力系统与人工智能</title>
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        /* 顶部 Header */
+        header {
+            background: linear-gradient(135deg, #004a99 0%, #002a5c 100%); /* 天元蓝渐变 */
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+
+        /* 主容器 */
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* 简介部分 */
+        .intro {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .intro h2 { color: #004a99; }
+
+        /* 时间轴样式 */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+        /* 中间的竖线 */
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #dce4ec;
+            margin-left: -2px;
+        }
+
+        /* 会议卡片 */
+        .event-card {
+            position: relative;
+            margin-bottom: 60px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .event-card::after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 内容框 */
+        .content {
+            position: relative;
+            width: 44%;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* 图片样式 */
+        .content img {
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 15px;
+            border: 1px solid #eee;
+        }
+
+        /* 左侧卡片 */
+        .left {
+            float: left;
+            clear: both;
+            text-align: right;
+        }
+        .left .tag { justify-content: flex-end; }
+
+        /* 右侧卡片 */
+        .right {
+            float: right;
+            clear: both;
+            text-align: left;
+        }
+
+        /* 时间轴上的圆点 */
+        .event-card::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 5px solid #004a99;
+            border-radius: 50%;
+            top: 25px;
+            left: 50%;
+            margin-left: -15px;
+            z-index: 1;
+        }
+
+        /* 标题和标签 */
+        h3 { margin-top: 0; color: #2c3e50; font-size: 1.5rem;}
+        .date-badge {
+            background-color: #004a99;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .location {
+            color: #7f8c8d;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .desc {
+            font-size: 0.95rem;
+            color: #555;
+            text-align: justify;
+        }
+        
+        /* 底部 */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #ddd;
+            margin-top: 50px;
+        }
+
+        /* 手机端适配 */
+        @media screen and (max-width: 768px) {
+            .timeline::before { left: 20px; }
+            .content { width: 85%; float: right; }
+            .event-card::before { left: 20px; }
+            .left, .right { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SD-AI 会议系列回顾</h1>
+    <p>Stochastic Dynamics and Artificial Intelligence</p>
+</header>
+
+<div class="container">
+    
+    <div class="intro">
+        <h2>系列简介</h2>
+        <p>国家天元数学中心主办的“随机动力系统与人工智能”系列会议，旨在汇聚顶尖学者，探讨随机动力系统、机器学习及其在生物物理、数据科学中的前沿交叉应用。</p>
+    </div>
+
+    <div class="timeline">
+
+        <div class="event-card right">
+            <div class="content">
+                <span class="date-badge">2025.04.10 - 04.13</span>
+                <h3>第三届：SD-AI 研讨会</h3>
+                <div class="location">📍 中国 · 厦门 (国家天元数学东南中心)</div>
+                <p class="desc">
+                    会议在厦门大学圆满召开。来自清华大学、武汉大学、香港科技大学等20余所高校的30余名专家学者参会。会议围绕随机动力系统和机器学习等新兴领域的最新研究成果展开研讨。
+                </p>
+                <img src="photo_v3.jpg" alt="2025厦门会议合影">
+            </div>
+        </div>
+
+        <div class="event-card left">
+            <div class="content">
+                <span class="date-badge">2023.11.16 - 11.17</span>
+                <h3>第二届：随机动力系统与机器学习</h3>
+                <div class="location">📍 中国 · 厦门 (厦门大学海韵园)</div>
+                <p class="desc">
+                    由国家天元数学东南中心举办。段金桥、陈晓鹏、朱玉峻等教授组织。会议涵盖贝叶斯神经网络、保结构随机动力系统算法等前沿议题，共安排19场学术报告。
+                </p>
+                <img src="photo_v2.jpg" alt="2023厦门会议合影">
+            </div>
+        </div>
+
+        <div class="event-card right">
+            <div class="content">
+                <span class="date-badge">2023.06.14 - 06.18</span>
+                <h3>第一届：随机动力系统会议</h3>
+                <div class="location">📍 中国 · 武汉 (国家天元数学中部中心)</div>
+                <p class="desc">
+                    系列会议的开端。会议聚焦随机偏微分方程、随机动力系统的理论方法及其在生物物理中的应用，深入讨论了有效动力学与数据科学交叉研究的前沿问题。
+                </p>
+                <img src="photo_v1.jpg" alt="2023武汉会议合影">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    © 2025 Stochastic Dynamics and Artificial Intelligence Series. <br>
+    Hosted by Github Pages.
+</footer>
+
+</body>
+</html>
