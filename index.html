@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SD-AI 会议系列回顾 | 随机动力系统与人工智能</title>
+    <title>SD-AI Conference Series | 会议系列回顾</title>
     <style>
         /* 全局样式 */
         body {
@@ -12,15 +12,41 @@
             color: #333;
             margin: 0;
             line-height: 1.6;
+            transition: all 0.3s ease;
         }
         
+        /* 语言切换控制 */
+        .lang-en { display: none; } /* 默认隐藏英文 */
+        
+        /* 当 body 有 en-mode 类时，隐藏中文，显示英文 */
+        body.en-mode .lang-cn { display: none; }
+        body.en-mode .lang-en { display: block; }
+
         /* 顶部 Header */
         header {
-            background: linear-gradient(135deg, #004a99 0%, #002a5c 100%); /* 天元蓝渐变 */
+            background: linear-gradient(135deg, #004a99 0%, #002a5c 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
+            position: relative;
         }
+        
+        /* 语言切换按钮 */
+        .lang-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.5);
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+        .lang-btn:hover { background: rgba(255,255,255,0.4); }
+
         header h1 {
             margin: 0;
             font-size: 2.5rem;
@@ -55,16 +81,20 @@
             position: relative;
             padding: 20px 0;
         }
-        /* 中间的竖线 */
         .timeline::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
+            top: 0; bottom: 0; left: 50%;
             width: 4px;
             background: #dce4ec;
             margin-left: -2px;
+        }
+
+        /* 会议卡片链接化 */
+        .event-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         /* 会议卡片 */
@@ -73,13 +103,17 @@
             margin-bottom: 60px;
             width: 100%;
             box-sizing: border-box;
+            transition: transform 0.3s ease; /* 添加悬浮动画 */
         }
         
-        .event-card::after {
-            content: "";
-            display: table;
-            clear: both;
+        /* 鼠标悬停效果 */
+        .event-card:hover .content {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,74,153,0.15);
+            border-left: 5px solid #004a99;
         }
+
+        .event-card::after { content: ""; display: table; clear: both; }
 
         /* 内容框 */
         .content {
@@ -89,9 +123,10 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-left: 5px solid transparent; /* 为悬停效果占位 */
+            transition: all 0.3s;
         }
 
-        /* 图片样式 */
         .content img {
             width: 100%;
             border-radius: 5px;
@@ -99,38 +134,26 @@
             border: 1px solid #eee;
         }
 
-        /* 左侧卡片 */
-        .left {
-            float: left;
-            clear: both;
-            text-align: right;
-        }
-        .left .tag { justify-content: flex-end; }
+        .left { float: left; clear: both; text-align: right; }
+        .right { float: right; clear: both; text-align: left; }
 
-        /* 右侧卡片 */
-        .right {
-            float: right;
-            clear: both;
-            text-align: left;
-        }
-
-        /* 时间轴上的圆点 */
+        /* 时间轴圆点 */
         .event-card::before {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
+            width: 20px; height: 20px;
             background-color: white;
             border: 5px solid #004a99;
             border-radius: 50%;
-            top: 25px;
-            left: 50%;
+            top: 25px; left: 50%;
             margin-left: -15px;
             z-index: 1;
         }
 
         /* 标题和标签 */
-        h3 { margin-top: 0; color: #2c3e50; font-size: 1.5rem;}
+        h3 { margin-top: 0; color: #2c3e50; font-size: 1.5rem; margin-bottom: 5px;}
+        .subtitle-link-hint { font-size: 0.8rem; color: #004a99; opacity: 0.7; font-weight: normal; }
+        
         .date-badge {
             background-color: #004a99;
             color: white;
@@ -152,7 +175,6 @@
             text-align: justify;
         }
         
-        /* 底部 */
         footer {
             text-align: center;
             padding: 40px;
@@ -162,7 +184,6 @@
             margin-top: 50px;
         }
 
-        /* 手机端适配 */
         @media screen and (max-width: 768px) {
             .timeline::before { left: 20px; }
             .content { width: 85%; float: right; }
@@ -174,53 +195,97 @@
 <body>
 
 <header>
-    <h1>SD-AI 会议系列回顾</h1>
-    <p>Stochastic Dynamics and Artificial Intelligence</p>
+    <button class="lang-btn" onclick="toggleLanguage()">English / 中文</button>
+    <h1>SD-AI <span class="lang-cn">会议系列回顾</span><span class="lang-en">Conference Series</span></h1>
+    <p>
+        <span class="lang-cn">随机动力系统与人工智能</span>
+        <span class="lang-en">Stochastic Dynamics and Artificial Intelligence</span>
+    </p>
 </header>
 
 <div class="container">
     
     <div class="intro">
-        <h2>系列简介</h2>
-        <p>国家天元数学中心主办的“随机动力系统与人工智能”系列会议，旨在汇聚顶尖学者，探讨随机动力系统、机器学习及其在生物物理、数据科学中的前沿交叉应用。</p>
+        <h2>
+            <span class="lang-cn">系列简介</span>
+            <span class="lang-en">Series Introduction</span>
+        </h2>
+        <p class="lang-cn">国家天元数学中心主办的“随机动力系统与人工智能”系列会议，旨在汇聚顶尖学者，探讨随机动力系统、机器学习及其在生物物理、数据科学中的前沿交叉应用。</p>
+        <p class="lang-en">Sponsored by the Tianyuan Mathematical Center, the "Stochastic Dynamics and Artificial Intelligence" conference series aims to bring together top scholars to explore frontier cross-applications of stochastic dynamical systems, machine learning, biophysics, and data science.</p>
     </div>
 
     <div class="timeline">
 
         <div class="event-card right">
-            <div class="content">
-                <span class="date-badge">2025.04.10 - 04.13</span>
-                <h3>第三届：SD-AI 研讨会</h3>
-                <div class="location">📍 中国 · 厦门 (国家天元数学东南中心)</div>
-                <p class="desc">
-                    会议在厦门大学圆满召开。来自清华大学、武汉大学、香港科技大学等20余所高校的30余名专家学者参会。会议围绕随机动力系统和机器学习等新兴领域的最新研究成果展开研讨。
-                </p>
-                <img src="photo_v3.jpg" alt="2025厦门会议合影">
-            </div>
+            <a href="xiamen2025.html" class="event-link">
+                <div class="content">
+                    <span class="date-badge">2025.04.10 - 04.13</span>
+                    <h3>
+                        <span class="lang-cn">第三届：SD-AI 研讨会</span>
+                        <span class="lang-en">3rd Edition: SD-AI Workshop</span>
+                        <span class="subtitle-link-hint">🔗</span>
+                    </h3>
+                    <div class="location">
+                        <span class="lang-cn">📍 中国 · 厦门 (国家天元数学东南中心)</span>
+                        <span class="lang-en">📍 Xiamen, China (Tianyuan Southeast Center)</span>
+                    </div>
+                    <p class="desc lang-cn">
+                        会议在厦门大学圆满召开。来自清华大学、武汉大学、香港科技大学等20余所高校的30余名专家学者参会。会议围绕随机动力系统和机器学习等新兴领域的最新研究成果展开研讨。
+                    </p>
+                    <p class="desc lang-en">
+                        Successfully held at Xiamen University. Over 30 experts from 20+ universities including Tsinghua University and HKUST attended. The conference focused on the latest research in stochastic dynamical systems and machine learning.
+                    </p>
+                    <img src="photo_v3.jpg" alt="2025 Group Photo">
+                </div>
+            </a>
         </div>
 
         <div class="event-card left">
-            <div class="content">
-                <span class="date-badge">2023.11.16 - 11.17</span>
-                <h3>第二届：随机动力系统与机器学习</h3>
-                <div class="location">📍 中国 · 厦门 (厦门大学海韵园)</div>
-                <p class="desc">
-                    由国家天元数学东南中心举办。段金桥、陈晓鹏、朱玉峻等教授组织。会议涵盖贝叶斯神经网络、保结构随机动力系统算法等前沿议题，共安排19场学术报告。
-                </p>
-                <img src="photo_v2.jpg" alt="2023厦门会议合影">
-            </div>
+            <a href="xiamen2023.html" class="event-link">
+                <div class="content">
+                    <span class="date-badge">2023.11.16 - 11.17</span>
+                    <h3>
+                        <span class="lang-cn">第二届：随机动力系统与机器学习</span>
+                        <span class="lang-en">2nd Edition: SD & Machine Learning</span>
+                        <span class="subtitle-link-hint">🔗</span>
+                    </h3>
+                    <div class="location">
+                        <span class="lang-cn">📍 中国 · 厦门 (厦门大学海韵园)</span>
+                        <span class="lang-en">📍 Xiamen, China (XMU Haiyun Campus)</span>
+                    </div>
+                    <p class="desc lang-cn">
+                        由国家天元数学东南中心举办。段金桥、陈晓鹏、朱玉峻等教授组织。会议涵盖贝叶斯神经网络、保结构随机动力系统算法等前沿议题，共安排19场学术报告。
+                    </p>
+                    <p class="desc lang-en">
+                        Hosted by Tianyuan Mathematical Center in Southeast China. Organized by Profs. Jinqiao Duan, Xiaopeng Chen, and Yujun Zhu. Covered topics like Bayesian neural networks and structure-preserving stochastic algorithms, featuring 19 academic reports.
+                    </p>
+                    <img src="photo_v2.jpg" alt="2023 Xiamen Group Photo">
+                </div>
+            </a>
         </div>
 
         <div class="event-card right">
-            <div class="content">
-                <span class="date-badge">2023.06.14 - 06.18</span>
-                <h3>第一届：随机动力系统会议</h3>
-                <div class="location">📍 中国 · 武汉 (国家天元数学中部中心)</div>
-                <p class="desc">
-                    系列会议的开端。会议聚焦随机偏微分方程、随机动力系统的理论方法及其在生物物理中的应用，深入讨论了有效动力学与数据科学交叉研究的前沿问题。
-                </p>
-                <img src="photo_v1.jpg" alt="2023武汉会议合影">
-            </div>
+            <a href="wuhan2023.html" class="event-link">
+                <div class="content">
+                    <span class="date-badge">2023.06.14 - 06.18</span>
+                    <h3>
+                        <span class="lang-cn">第一届：随机动力系统会议</span>
+                        <span class="lang-en">1st Edition: Stochastic Dynamics Conf.</span>
+                        <span class="subtitle-link-hint">🔗</span>
+                    </h3>
+                    <div class="location">
+                        <span class="lang-cn">📍 中国 · 武汉 (国家天元数学中部中心)</span>
+                        <span class="lang-en">📍 Wuhan, China (Tianyuan Central Center)</span>
+                    </div>
+                    <p class="desc lang-cn">
+                        系列会议的开端。会议聚焦随机偏微分方程、随机动力系统的理论方法及其在生物物理中的应用，深入讨论了有效动力学与数据科学交叉研究的前沿问题。
+                    </p>
+                    <p class="desc lang-en">
+                        The inception of the series. Focused on theoretical methods of SPDEs and stochastic dynamical systems, their applications in biophysics, and the intersection of effective dynamics and data science.
+                    </p>
+                    <img src="photo_v1.jpg" alt="2023 Wuhan Group Photo">
+                </div>
+            </a>
         </div>
 
     </div>
@@ -230,6 +295,29 @@
     © 2025 Stochastic Dynamics and Artificial Intelligence Series. <br>
     Hosted by Github Pages.
 </footer>
+
+<script>
+    function toggleLanguage() {
+        const body = document.body;
+        // 切换 body 的 class，控制 CSS 显示隐藏
+        body.classList.toggle('en-mode');
+        
+        // 可选：保存用户偏好到本地存储，刷新页面后依然记住语言
+        if (body.classList.contains('en-mode')) {
+            localStorage.setItem('language', 'en');
+        } else {
+            localStorage.setItem('language', 'cn');
+        }
+    }
+
+    // 页面加载时读取用户偏好
+    window.onload = function() {
+        const savedLang = localStorage.getItem('language');
+        if (savedLang === 'en') {
+            document.body.classList.add('en-mode');
+        }
+    }
+</script>
 
 </body>
 </html>
