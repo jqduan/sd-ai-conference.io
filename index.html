@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stochastic Dynamics and Artificial Intelligence   
-会议系列回顾 | 会议系列回顾</title>
+    <title>SD-AI Conference Series | 会议系列回顾</title>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
     <style>
         /* 全局样式 */
         body {
@@ -185,6 +186,15 @@
             margin-top: 50px;
         }
 
+        /* 访问量统计样式 */
+        .visitor-count {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            font-family: monospace;
+            color: #555;
+        }
+
         @media screen and (max-width: 768px) {
             .timeline::before { left: 20px; }
             .content { width: 85%; float: right; }
@@ -295,15 +305,27 @@
 <footer>
     © 2025 Stochastic Dynamics and Artificial Intelligence Series. <br>
     Hosted by Github Pages.
+    
+    <div class="visitor-count">
+        <span id="busuanzi_container_site_pv">
+            <span class="lang-cn">👀 本站总访问量：</span>
+            <span class="lang-en">👀 Total Views: </span>
+            <span id="busuanzi_value_site_pv" style="font-weight: bold; color: #004a99;"></span>
+        </span>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <span id="busuanzi_container_site_uv">
+            <span class="lang-cn">👤 访客数：</span>
+            <span class="lang-en">👤 Visitors: </span>
+            <span id="busuanzi_value_site_uv" style="font-weight: bold; color: #004a99;"></span>
+        </span>
+    </div>
 </footer>
 
 <script>
     function toggleLanguage() {
         const body = document.body;
-        // 切换 body 的 class，控制 CSS 显示隐藏
         body.classList.toggle('en-mode');
         
-        // 可选：保存用户偏好到本地存储，刷新页面后依然记住语言
         if (body.classList.contains('en-mode')) {
             localStorage.setItem('language', 'en');
         } else {
@@ -311,7 +333,6 @@
         }
     }
 
-    // 页面加载时读取用户偏好
     window.onload = function() {
         const savedLang = localStorage.getItem('language');
         if (savedLang === 'en') {
