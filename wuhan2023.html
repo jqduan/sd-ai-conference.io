@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 随机动力系统会议 | 武汉</title>
+    <style>
+        :root {
+            --primary-color: #0056b3; /* 天元蓝 */
+            --accent-color: #e74c3c;
+            --bg-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        .nav-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-logo { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); text-decoration: none;}
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+        .back-btn { background: #eee; padding: 5px 10px; border-radius: 4px; }
+
+        /* 页头 Hero */
+        header {
+            background: linear-gradient(135deg, #0056b3 0%, #003d80 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        header h1 { margin: 0 0 10px 0; font-size: 2.5rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .zoom-id {
+            background: rgba(255,255,255,0.15);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        /* 通用容器 */
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .section-title h2 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            display: inline-block;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        /* 概览 */
+        .overview-box {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        /* 委员会名单 */
+        .committee-group { margin-bottom: 40px; }
+        .committee-group h3 { 
+            background: #eee; 
+            padding: 10px 15px; 
+            border-radius: 5px; 
+            margin-bottom: 20px;
+            border-left: 4px solid #666;
+        }
+        .name-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .name-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .name-card strong { color: var(--primary-color); }
+        .name-card span { font-size: 0.85rem; color: #666; text-align: right; }
+
+        /* 邀请报告名单 */
+        .speaker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+        }
+        .speaker-item {
+            background: var(--bg-light);
+            padding: 10px;
+            text-align: center;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: transform 0.2s;
+        }
+        .speaker-item:hover { transform: translateY(-3px); background: #eef2f7; }
+        .speaker-univ {
+            display: block;
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 3px;
+        }
+
+        /* 会场与住宿 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .info-card {
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 25px;
+            border-radius: 8px;
+        }
+        .info-card h3 { margin-top: 0; color: var(--primary-color); }
+        .info-card ul { padding-left: 20px; }
+        .info-card li { margin-bottom: 10px; }
+
+        /* 页脚 */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .contact-email { color: white; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .name-card { flex-direction: column; align-items: flex-start; }
+            .name-card span { text-align: left; margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="index.html" class="back-btn">← 返回系列主页</a>
+        <div class="nav-links">
+            <a href="#overview">会议简介</a>
+            <a href="#committee">组委会</a>
+            <a href="#speakers">邀请报告</a>
+            <a href="#venue">会场指南</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <h1>国家天元数学中部中心随机动力系统会议</h1>
+    <p>2023.06.14 - 2023.06.18 | 中国 · 武汉</p>
+    <div class="zoom-id">Zoom/腾讯会议 ID: 922-6078-0232</div>
+</header>
+
+<section id="overview" class="container">
+    <div class="section-title">
+        <h2>会议简介</h2>
+    </div>
+    <div class="overview-box">
+        <p>本次会议将深入讨论随机动力系统、随机分析与计算及在数据科学热点问题中的新研究。会议将聚焦以下核心议题：</p>
+        <ul>
+            <li>随机偏微分方程、随机动力系统的理论方法及其在生物物理中的应用</li>
+            <li>随机动力系统的有效动力学与数据科学交叉研究的前沿问题</li>
+            <li>融合机理的数据驱动建模方法等</li>
+        </ul>
+        <p>本次会议未开放公开注册，仅限邀请人参会。欢迎广大师生通过线上方式参加。</p>
+    </div>
+</section>
+
+<section id="committee" class="container" style="background-color: #fafafa;">
+    <div class="section-title">
+        <h2>组织机构</h2>
+    </div>
+
+    <div class="committee-group">
+        <h3>学术委员会 (Academic Committee)</h3>
+        <div class="name-grid">
+            <div class="name-card"><strong>段金桥</strong> <span>大湾区大学 & HUST</span></div>
+            <div class="name-card"><strong>高洪俊</strong> <span>东南大学</span></div>
+            <div class="name-card"><strong>黄建华</strong> <span>国防科技大学</span></div>
+            <div class="name-card"><strong>黄文</strong> <span>中国科学技术大学</span></div>
+            <div class="name-card"><strong>蒋继发</strong> <span>上海师范大学</span></div>
+            <div class="name-card"><strong>吕克宁</strong> <span>Brigham Young Univ.</span></div>
+            <div class="name-card"><strong>王伟</strong> <span>南京大学</span></div>
+            <div class="name-card"><strong>吴奖伦</strong> <span>北师大浸会联合学院</span></div>
+            <div class="name-card"><strong>吴付科</strong> <span>华中科技大学</span></div>
+            <div class="name-card"><strong>赵怀忠</strong> <span>Durham University</span></div>
+            <div class="name-card"><strong>周盛凡</strong> <span>浙江师范大学</span></div>
+        </div>
+    </div>
+
+    <div class="committee-group">
+        <h3>会议组委会 (Organizing Committee)</h3>
+        <div class="name-grid">
+            <div class="name-card"><strong>高婷</strong> <span>华中科技大学数学中心</span></div>
+            <div class="name-card"><strong>刘显明</strong> <span>华中科技大学</span></div>
+            <div class="name-card"><strong>刘会</strong> <span>武汉大学</span></div>
+            <div class="name-card"><strong>王慧</strong> <span>郑州大学</span></div>
+            <div class="name-card"><strong>张奥</strong> <span>中南大学</span></div>
+            <div class="name-card"><strong>陈小丽</strong> <span>新加坡国立大学</span></div>
+            <div class="name-card"><strong>陈涌</strong> <span>浙江理工大学</span></div>
+            <div class="name-card"><strong>乔会杰</strong> <span>东南大学</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="speakers" class="container">
+    <div class="section-title">
+        <h2>邀请报告 (Invited Talks)</h2>
+        <p style="font-size: 0.9rem; color: #888;">* Listed in alphabetical order</p>
+    </div>
+    <div class="speaker-grid">
+        <div class="speaker-item"><strong>曹琪勇</strong><span class="speaker-univ">南京师范大学</span></div>
+        <div class="speaker-item"><strong>陈涌</strong><span class="speaker-univ">浙江理工大学</span></div>
+        <div class="speaker-item"><strong>陈光淦</strong><span class="speaker-univ">四川师范大学</span></div>
+        <div class="speaker-item"><strong>陈建宇</strong><span class="speaker-univ">华中科技大学</span></div>
+        <div class="speaker-item"><strong>方程</strong><span class="speaker-univ">华中科技大学</span></div>
+        <div class="speaker-item"><strong>高鹏</strong><span class="speaker-univ">东北师范大学</span></div>
+        <div class="speaker-item"><strong>高婷</strong><span class="speaker-univ">华中科技大学</span></div>
+        <div class="speaker-item"><strong>高源</strong><span class="speaker-univ">东北师范大学</span></div>
+        <div class="speaker-item"><strong>Jiequn Han</strong><span class="speaker-univ">Flatiron Institute</span></div>
+        <div class="speaker-item"><strong>李歌</strong><span class="speaker-univ">华中科技大学</span></div>
+        <div class="speaker-item"><strong>李磊</strong><span class="speaker-univ">上海交通大学</span></div>
+        <div class="speaker-item"><strong>李铁军</strong><span class="speaker-univ">北京大学</span></div>
+        <div class="speaker-item"><strong>Jianguo Liu</strong><span class="speaker-univ">Duke University</span></div>
+        <div class="speaker-item"><strong>刘善旗</strong><span class="speaker-univ">南京师范大学</span></div>
+        <div class="speaker-item"><strong>卢飞</strong><span class="speaker-univ">Johns Hopkins Univ.</span></div>
+        <div class="speaker-item"><strong>吕广迎</strong><span class="speaker-univ">南京信息工程大学</span></div>
+        <div class="speaker-item"><strong>孟德宇</strong><span class="speaker-univ">西安交通大学</span></div>
+        <div class="speaker-item"><strong>乔会杰</strong><span class="speaker-univ">东南大学</span></div>
+        <div class="speaker-item"><strong>任景莉</strong><span class="speaker-univ">郑州大学</span></div>
+        <div class="speaker-item"><strong>申俊</strong><span class="speaker-univ">四川大学</span></div>
+        <div class="speaker-item"><strong>石琳</strong><span class="speaker-univ">西南交通大学</span></div>
+        <div class="speaker-item"><strong>Renming Song</strong><span class="speaker-univ">UIUC</span></div>
+        <div class="speaker-item"><strong>孙旭</strong><span class="speaker-univ">华中科技大学</span></div>
+        <div class="speaker-item"><strong>王伟</strong><span class="speaker-univ">南京大学</span></div>
+        <div class="speaker-item"><strong>王荣年</strong><span class="speaker-univ">上海师范大学</span></div>
+        <div class="speaker-item"><strong>魏金龙</strong><span class="speaker-univ">中南财经政法大学</span></div>
+        <div class="speaker-item"><strong>吴昊</strong><span class="speaker-univ">同济大学</span></div>
+        <div class="speaker-item"><strong>闫威</strong><span class="speaker-univ">河南师范大学</span></div>
+        <div class="speaker-item"><strong>袁胜兰</strong><span class="speaker-univ">德国奥格斯堡大学</span></div>
+        <div class="speaker-item"><strong>张琦</strong><span class="speaker-univ">清华大学</span></div>
+        <div class="speaker-item"><strong>张燕杰</strong><span class="speaker-univ">郑州大学</span></div>
+    </div>
+</section>
+
+<section id="venue" class="container">
+    <div class="section-title">
+        <h2>参会指南</h2>
+    </div>
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>📍 会场与住宿</h3>
+            <p><strong>地点：</strong>武汉君宜王朝大饭店</p>
+            <p><strong>地址：</strong>湖北省武汉市洪山区珞喻路87号</p>
+            <p><strong>会场：</strong>六楼，绿岛厅</p>
+            <p><strong>电话：</strong>027-87687777</p>
+            <p style="font-size:0.9em; color:#666;">* 住宿由会务组统一安排</p>
+        </div>
+        <div class="info-card">
+            <h3>📅 日程须知</h3>
+            <ul>
+                <li><strong>注册报到：</strong>6月14日 14:00-18:00 (武汉君宜王朝大饭店)</li>
+                <li><strong>正式会议：</strong>6月15日 - 6月18日 (8:30-18:00)</li>
+                <li><strong>线上参与：</strong>腾讯会议 <span style="font-family:monospace; font-weight:bold;">922-6078-0232</span></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>联系我们 (Contact Us)</h3>
+    <p>华中科技大学数学中心：刘怡华 (<span class="contact-email">lyihua@hust.edu.cn</span>)</p>
+    <p>国家天元数学中部中心：邓 琼 (<span class="contact-email">qdeng@whu.edu.cn</span>)</p>
+    <br>
+    <p style="font-size: 0.8rem; opacity: 0.6;">© 2023 国家天元数学中部中心</p>
+</footer>
+
+</body>
+</html>
