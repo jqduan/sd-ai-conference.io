@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2023 随机动力系统与机器学习研讨会 | 厦门</title>
+    <style>
+        :root {
+            --primary-color: #0056b3; /* 天元蓝 */
+            --accent-color: #16a085;  /* 使用青绿色区分第二届 */
+            --bg-light: #f8f9fa;
+            --text-dark: #2c3e50;
+            --border-color: #e9ecef;
+        }
+
+        body {
+            font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #fff;
+        }
+
+        /* 导航栏 */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+        .nav-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        .nav-logo { font-weight: bold; font-size: 1.2rem; color: var(--primary-color); text-decoration: none;}
+        .nav-links a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+        .back-btn { background: #eee; padding: 5px 10px; border-radius: 4px; }
+
+        /* 页头 Hero */
+        header {
+            background: linear-gradient(135deg, #0056b3 0%, #16a085 100%); /* 蓝绿渐变 */
+            color: white;
+            padding: 80px 20px 100px;
+            text-align: center;
+        }
+        header h1 { margin: 0 0 10px 0; font-size: 2.2rem; }
+        header p { font-size: 1.2rem; opacity: 0.9; }
+        .date-badge {
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+
+        /* 顶部下载按钮 */
+        .hero-download-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 25px;
+            background-color: rgba(255,255,255,0.9);
+            color: var(--primary-color);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .hero-download-btn:hover {
+            transform: translateY(-2px);
+            background-color: #fff;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+
+        /* 通用容器 */
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .section-title h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            display: inline-block;
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        /* 简介盒子 */
+        .overview-box {
+            background: var(--bg-light);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--accent-color);
+            margin-bottom: 40px;
+            text-align: justify;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* 组织者名单 */
+        .organizer-box {
+            margin-bottom: 40px;
+        }
+        .org-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .org-item {
+            background: white;
+            padding: 10px 30px;
+            border-radius: 50px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-weight: bold;
+            color: #444;
+            border: 1px solid #eee;
+        }
+
+        /* 信息网格 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .info-card {
+            background: white;
+            border: 1px solid #eee;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .info-card:hover { transform: translateY(-5px); }
+        .info-card h3 { 
+            margin-top: 0; 
+            color: var(--primary-color); 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-row { margin-bottom: 15px; font-size: 1.05rem; }
+        .contact-label { color: #888; font-size: 0.9rem; display: block; margin-bottom: 4px; }
+
+        /* 下载按钮样式 */
+        .download-btn {
+            display: block;
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: auto; /* 推到底部 */
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* 页脚 */
+        footer {
+            background: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .info-grid { grid-template-columns: 1fr; }
+            header { padding-bottom: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-content">
+        <a href="index.html" class="back-btn">← 返回系列主页</a>
+        <div class="nav-links">
+            <a href="#overview">简介</a>
+            <a href="#organizers">组织机构</a>
+            <a href="#info">会议安排</a>
+            <a href="#contact">联系方式</a>
+        </div>
+    </div>
+</nav>
+
+<header>
+    <h1>随机动力系统与机器学习研讨会</h1>
+    <p>Stochastic Dynamics and Machine Learning Workshop (2nd Edition)</p>
+    <div class="date-badge">📅 2023.11.16 - 2023.11.19</div>
+    <div style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">📍 厦门大学 · 海韵园</div>
+
+    <br>
+    <a href="manual_2023.pdf" class="hero-download-btn" download>
+        ⬇️ 下载会议手册 (PDF)
+    </a>
+</header>
+
+<section id="overview" class="container">
+    <div class="section-title">
+        <h2>会议简介</h2>
+    </div>
+    <div class="overview-box">
+        <p>国家天元数学东南中心拟于2023年11月16日- 19日举办随机动力系统与机器学习研讨会。本次会议旨在通过促进随机动力系统和机器学习等新兴领域共同感兴趣的主题，在随机和数据之间建立桥梁，并促进博士后和研究生在这些新兴领域进行研究。</p>
+    </div>
+</section>
+
+<section id="organizers" class="container">
+    <div class="section-title">
+        <h2>会议组织者</h2>
+        <p>Organizers</p>
+    </div>
+    <div class="organizer-box">
+        <div class="org-list">
+            <div class="org-item">段金桥</div>
+            <div class="org-item">朱玉峻</div>
+            <div class="org-item">毛志平</div>
+            <div class="org-item">陈晓鹏</div>
+        </div>
+    </div>
+</section>
+
+<section id="info" class="container">
+    <div class="section-title">
+        <h2>会议安排与指南</h2>
+    </div>
+    
+    <div class="info-grid">
+        <div class="info-card">
+            <h3>📅 日期安排</h3>
+            <div class="contact-row">
+                <span class="contact-label">报到日期</span>
+                <strong>2023年11月16日</strong>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">会议时间</span>
+                <strong>11月17日 08:30 - 11月18日 17:30</strong>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">离会日期</span>
+                <strong>2023年11月19日</strong>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h3>📍 地点与住宿</h3>
+            <div class="contact-row">
+                <span class="contact-label">会议地点</span>
+                厦门大学海韵园<br>
+                <strong>实验楼 106</strong>
+            </div>
+            <hr style="border:0; border-top:1px dashed #eee; margin: 15px 0;">
+            <div class="contact-row">
+                <span class="contact-label">住宿地点</span>
+                <strong>厦门鹭江·佲家酒店</strong>
+            </div>
+        </div>
+
+        <div class="info-card" style="border-top: 4px solid var(--accent-color);">
+            <h3>📂 会议资料</h3>
+            <div class="contact-row">
+                <span class="contact-label">会议手册</span>
+                <p style="font-size: 0.9em; color: #666; margin-bottom: 10px;">包含详细日程安排及报告摘要。</p>
+                <a href="manual_2023.pdf" class="download-btn" download>
+                    点击下载 PDF 文件
+                </a>
+            </div>
+        </div>
+
+        <div class="info-card" id="contact">
+            <h3>☎️ 会务联系</h3>
+            <div class="contact-row">
+                <span class="contact-label">联系人</span>
+                <strong>赖淇琤</strong>
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">电话</span>
+                0592-2580036
+            </div>
+            <div class="contact-row">
+                <span class="contact-label">邮箱</span>
+                <a href="mailto:qccclai@xmu.edu.cn" style="color: var(--primary-color); text-decoration: none;">qccclai@xmu.edu.cn</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <h3>国家天元数学东南中心</h3>
+    <p>Tianyuan Mathematical Center in Southeast China</p>
+    <br>
+    <p style="font-size: 0.8rem; opacity: 0.6;">© 2023 SD-AI Conference Series</p>
+</footer>
+
+</body>
+</html>
